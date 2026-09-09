@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("addition") || other.CompareTag("subtraction") || other.CompareTag("multiplication") ||
             other.CompareTag("division"))

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> subPlayers;
     public List<GameObject> SpawnEffects;
     public List<GameObject> DespawnEffects;
+    public List<GameObject> ImpactEffects;
 
 
     void Start()
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DespawnPlayer(Transform position)
+    public void DespawnPlayer(Transform position, bool hammer=false)
     {
         foreach (var item in DespawnEffects)
         {
@@ -51,6 +52,20 @@ public class GameManager : MonoBehaviour
                 item.SetActive(true);
                 item.transform.position = position.position;
                 item.GetComponent<ParticleSystem>().Play();
+            }
+        }
+
+        if (hammer)
+        {
+            Vector3 hammerPos = new Vector3(position.position.x, .03f, position.position.z);
+            foreach (var item in ImpactEffects)
+            {
+                if (!item.activeInHierarchy)
+                {
+                    item.SetActive(true);
+                    item.transform.position = hammerPos;
+                    break;
+                }
             }
         }
     }

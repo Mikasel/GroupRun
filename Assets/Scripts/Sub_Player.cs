@@ -23,11 +23,32 @@ public class Sub_Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "spikeBox")
+        if (other.CompareTag("spikeBox"))
         {
             GameManager.characterCount--;
             GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
             gameObject.SetActive(false);
+        }
+        
+        if (other.CompareTag("saw"))
+        {
+            GameManager.characterCount--;
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
+            gameObject.SetActive(false);
+        }
+        if (other.CompareTag("fanSpike"))
+        {
+            GameManager.characterCount--;
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
+            gameObject.SetActive(false);
+        }
+
+        if (other.CompareTag("hammer"))
+        {
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform, true);
+
+            gameObject.SetActive(false);
+            
         }
     }
 }
