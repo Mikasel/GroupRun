@@ -4,15 +4,15 @@ using UnityEngine.AI;
 
 public class Sub_Player : MonoBehaviour
 {
-    GameObject target;
-
     NavMeshAgent _navMesh;
+    public GameManager gameManager;
+    public GameObject target;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _navMesh = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().TargetPoint;
     }
 
     // Update is called once per frame
@@ -26,29 +26,34 @@ public class Sub_Player : MonoBehaviour
         if (other.CompareTag("spikeBox"))
         {
             GameManager.characterCount--;
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
+            gameManager.DespawnPlayer(transform);
             gameObject.SetActive(false);
         }
         
         if (other.CompareTag("saw"))
         {
             GameManager.characterCount--;
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
+            gameManager.DespawnPlayer(transform);
             gameObject.SetActive(false);
         }
         if (other.CompareTag("fanSpike"))
         {
             GameManager.characterCount--;
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform);
+            gameManager.DespawnPlayer(transform);
             gameObject.SetActive(false);
         }
 
         if (other.CompareTag("hammer"))
         {
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().DespawnPlayer(transform, true);
+            gameManager.DespawnPlayer(transform, true);
 
             gameObject.SetActive(false);
-            
+        }
+        if (other.CompareTag("enemy"))
+        {
+            gameManager.DespawnPlayer(transform,false,false);
+
+            gameObject.SetActive(false);
         }
     }
 }

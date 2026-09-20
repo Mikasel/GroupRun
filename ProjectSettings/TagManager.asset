@@ -14,6 +14,10 @@ TagManager:
   - fanSpike
   - subPlayer
   - hammer
+  - enemy
+  - lastTrigger
+  - middlePost
+  - sidePost
   layers:
   - Default
   - TransparentFX
